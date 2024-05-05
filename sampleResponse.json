@@ -1,0 +1,110 @@
+{
+    "status": "ok",
+    "totalResults": 8,
+    "articles": [
+        {
+            "source": {
+                "id": "abc-news",
+                "name": "ABC News"
+            },
+            "author": "PAN PYLAS Associated Press",
+            "title": "Kevin Spacey denies new allegations of inappropriate behavior",
+            "description": "Kevin Spacey, the Oscar-winning actor, has denied new allegations of inappropriate behavior from men who will feature in a documentary on British television that is due to be released next week",
+            "url": "https://abcnews.go.com/International/wireStory/kevin-spacey-denies-new-allegations-inappropriate-behavior-aired-109924929",
+            "urlToImage": "https://i.abcnewsfe.com/a/9efd071c-6909-4f13-be0b-3f1caf42b344/wirestory_abb53b9bba264dd602404ff4f74678b8_16x9.jpg?w=1600",
+            "publishedAt": "2024-05-04T11:32:38Z",
+            "content": "LONDON -- LONDON (AP) Kevin Spacey, the Oscar-winning actor, has denied new allegations of inappropriate behaviour from men who will feature in a documentary on British television that is due to be r… [+2863 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "[Removed]"
+            },
+            "author": null,
+            "title": "[Removed]",
+            "description": "[Removed]",
+            "url": "https://removed.com",
+            "urlToImage": null,
+            "publishedAt": "1970-01-01T00:00:00Z",
+            "content": "[Removed]"
+        },
+        {
+            "source": {
+                "id": "polygon",
+                "name": "Polygon"
+            },
+            "author": "Oli Welsh",
+            "title": "GTA publisher Take-Two to close Kerbal Space Program and OlliOlli studios",
+            "description": "A Bloomberg report says Private Division label will shutter Roll7 and Intercept Games as Take-Two looks to shed 5% of its workforce",
+            "url": "https://www.polygon.com/24147065/take-two-layoffs-roll7-intercept-games-closure",
+            "urlToImage": "https://cdn.vox-cdn.com/thumbor/EFmcbZct1tV898jKT8FC7hYvgxM=/0x75:3840x2085/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/23213977/olliolli_world_3.jpg",
+            "publishedAt": "2024-05-02T13:19:45Z",
+            "content": "Bloomberg reports that Grand Theft Auto publisher Take-Two Interactive will close two game studios as part of a recently announced plan to lay off 5% of its workforce.\r\nThe two studios are London-bas… [+2013 chars]"
+        },
+        {
+            "source": {
+                "id": "next-big-future",
+                "name": "Next Big Future"
+            },
+            "author": "Brian Wang",
+            "title": "2027 Space Telescope Could Find 400 Rogue Planets | NextBigFuture.com",
+            "description": "Nancy Grace Roman Space Telescope will be sensitive to even lower-mass rogue planets since it will observe from space. It will have wide field of view and",
+            "url": "https://www.nextbigfuture.com/2024/03/2027-space-telescope-could-find-400-rogue-planets.html",
+            "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2024/03/nancygraceroman.jpeg",
+            "publishedAt": "2024-03-27T06:05:25Z",
+            "content": "Nancy Grace Roman Space Telescope will be sensitive to even lower-mass rogue planets since it will observe from space. It will have wide field of view and sharp vision which will allow us to study th… [+2501 chars]"
+        },
+        {
+            "source": {
+                "id": "next-big-future",
+                "name": "Next Big Future"
+            },
+            "author": "Brian Wang",
+            "title": "Static Fire Shows SpaceX Tracking to Flight 4 Launch in About 5 Weeks | NextBigFuture.com",
+            "description": "SpaceX has a full duration static fire of six Raptor engines. Flight 4 Starship is on track for another orbital launch in about 5 weeks.",
+            "url": "https://www.nextbigfuture.com/2024/03/static-fire-shows-spacex-tracking-to-flight-4-launch-in-about-5-weeks.html",
+            "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2024/03/Screen-Shot-2024-03-26-at-11.44.17-AM.jpg",
+            "publishedAt": "2024-03-26T18:46:38Z",
+            "content": "Brian Wang is a Futurist Thought Leader and a popular Science blogger with 1 million readers per month. His blog Nextbigfuture.com is ranked #1 Science News Blog. It covers many disruptive technology… [+593 chars]"
+        },
+        {
+            "source": {
+                "id": "the-next-web",
+                "name": "The Next Web"
+            },
+            "author": "Linnea Ahlgren",
+            "title": "3D-printed rocket engine revs up for orbital launch in Scotland",
+            "description": "Edinburgh-based aerospace startup Skyrora announced yesterday it had commenced a series of full-duration tests of its updated 3D-printed 70kN engine. \r\n\r\nThe new design features an ...",
+            "url": "http://thenextweb.com/news/3d-printed-rocket-engine-revs-up-orbital-launch-scotland",
+            "urlToImage": "https://img-cdn.tnwcdn.com/image/tnw-blurple?filter_last=1&fit=1280%2C640&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2023%2F06%2F70-kn-engine-1-1-1024x576-1-e1687258568667.jpg&signature=e504e335f8babf0e24721de9198d4fb6",
+            "publishedAt": "2023-06-20T12:00:47Z",
+            "content": "Edinburgh-based aerospace startup Skyrora announced yesterday it had commenced a series of full-duration tests of its updated 3D-printed 70kN engine. \r\nThe new design features an improved engine cool… [+3908 chars]"
+        },
+        {
+            "source": {
+                "id": "new-scientist",
+                "name": "New Scientist"
+            },
+            "author": null,
+            "title": "SpaceX launches Starlink V2 satellites to increase internet capacity",
+            "description": "A new generation of Starlink’s internet satellites will orbit at low altitudes and eventually re-enter Earth’s atmosphere, limiting the amount of clutter in orbit",
+            "url": "https://www.newscientist.com/article/2361798-spacex-launches-starlink-v2-satellites-to-increase-internet-capacity/",
+            "urlToImage": "https://images.newscientist.com/wp-content/uploads/2023/02/28135738/SEI_146185094.jpg",
+            "publishedAt": "2023-02-28T00:00:00Z",
+            "content": "By Chris Stokel-Walker\r\nThe Starlink launch at Cape Canaveral, Florida, on 27 February 2023\r\nSpaceX\r\nA rocket carrying 21 new generation Starlink satellites successfully launched into orbit at 6:13pm… [+2305 chars]"
+        },
+        {
+            "source": {
+                "id": "national-geographic",
+                "name": "National Geographic"
+            },
+            "author": "Nadia Drake",
+            "title": "How these feuding map-makers shaped our fascination with Mars",
+            "description": "One was an artist who loved space. His rival was a bold professional astronomer. Their race to map the red planet sparked decades of science and speculation.",
+            "url": "https://www.nationalgeographic.com/science/2021/02/how-feuding-map-makers-shaped-our-fascination-with-mars.html",
+            "urlToImage": "https://pmdvod.nationalgeographic.com/NG_Video/788/579/smpost_1612381336455.jpg",
+            "publishedAt": "2021-02-17T14:37:21.3706142Z",
+            "content": null
+        }
+    ]
+}
