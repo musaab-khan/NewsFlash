@@ -37,16 +37,21 @@ constructor(props){ //using props bcz using category from props in constructor
 }
 
 async newsUpdate(){
-  let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=48bb98f2a6c0458d873f0244eac7f043&page=${this.state.page}&pageSize=${this.props.pageSize}`
-    this.setState({loading: true})
+  this.props.setProgress(10);
+  let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
+  this.setState({loading: true})
   let data = await fetch(url);
+  this.props.setProgress(50);
   let parsedData= await data.json();
+  this.props.setProgress(70);
+  console.log(parsedData);
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
       loading: false,
       page: this.state.page
     })
+    this.props.setProgress(100);
     
 }
 
@@ -69,7 +74,7 @@ async componentDidMount(){
     this.setState({ loading: true });
   
     // Fetch data with the updated page number
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=48bb98f2a6c0458d873f0244eac7f043&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
   
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -109,8 +114,8 @@ async componentDidMount(){
           <div className="row">
             {this.state.articles.map((e)=>{
                return (
-                <div className='col md-4' key={e.url}>
-                <NewsItem title={e.title?e.title.slice(0,45):""} description={e.description?e.description.slice(0,88):""} imgUrl={e.urlToImage} newsUrl={e.url} author={e.author} date={e.publishedAt} source={e.source.name}> </NewsItem>
+                <div className='col md-4 mx-auto' key={e.url}>
+                <NewsItem title={e.title?e.title:""} description={e.description?e.description:""} imgUrl={e.urlToImage} newsUrl={e.url} author={e.author} date={e.publishedAt} source={e.source.name}> </NewsItem>
             </div>
             )
           })}
