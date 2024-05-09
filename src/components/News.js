@@ -1,23 +1,18 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import NewsItem from './NewsItem'
 import Loader from './Loader';
 import PropTypes from 'prop-types'
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export class News extends Component {
-  static defaultProps ={
-    country: "in",
-    pageSize: "9",
-    category: "general"
-  }
-  static propTypes = {
-    country: PropTypes.string,
-    pageSize: PropTypes.number,
-    category: PropTypes.string
-  }
-  articles = []
+const News = (props) => {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
 
-  capitalizeFirstLetter=(word)=> {
+  // document.title=`${this.capitalizeFirstLetter(props.category)} - NewsFlash`;
+
+  const capitalizeFirstLetter=(word)=> {
     if (word && typeof word === 'string') {
       return word.charAt(0).toUpperCase() + word.slice(1);
     } else {
@@ -25,84 +20,64 @@ export class News extends Component {
     }
   }
 
-constructor(props){ //using props bcz using category from props in constructor
-  super(props); //parent's constructor (has to be called)
-  this.state={
-    articles:this.articles,
-    loading : false,
-    page: 1,
-    totalResults: 0
-  }
-  document.title=`${this.capitalizeFirstLetter(this.props.category)} - NewsFlash`;
-}
 
-async newsUpdate(){
-  this.props.setProgress(10);
-  let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
-  this.setState({loading: true})
+const newsUpdate = async()=>{
+  props.setProgress(10);
+  let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`
+  setLoading(true)
   let data = await fetch(url);
-  this.props.setProgress(50);
+  props.setProgress(50);
   let parsedData= await data.json();
-  this.props.setProgress(70);
-  console.log(parsedData);
-    this.setState({
-      articles: parsedData.articles,
-      totalResults: parsedData.totalResults,
-      loading: false,
-      page: this.state.page
-    })
-    this.props.setProgress(100);
+  props.setProgress(70);
+  setArticles(parsedData.articles);
+  setTotalResults(parsedData.totalResults);
+  setLoading(false);
+  props.setProgress(100);
     
 }
 
-async componentDidMount(){
-  this.newsUpdate();
-}
+useEffect(() => { //componentDidMount replacement runs after component mounted
+  newsUpdate();
+}, [])
 
-  // handlePreviousClick= ()=>{
-  //   this.setState(prevState => ({page: prevState.page-1}), () => {
-  //     this.newsUpdate();
-  //   });
-  // }
-  // handleNextClick=()=>{
-  //   this.setState(prevState => ({page: prevState.page+1}), () => {  //here callback function prevState is used bcz Since setState is asynchronous, without a callback function, there is no guarantee that the state has been updated when you try to access it immediately after calling setState.
-  //     this.newsUpdate();
-  //   });
-  // }
+
+  const handlePreviousClick= ()=>{
+    setPage(prevPage => prevPage-1);
+    newsUpdate();
+    }
   
-  fetchData = async () => {
-    this.setState({ loading: true });
+  const handleNextClick= ()=>{
+    setPage(prevPage => prevPage+1);
+    newsUpdate();
+    }
   
+  const fetchData = async () => {
+    setLoading(true);
     // Fetch data with the updated page number
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
   
     let data = await fetch(url);
     let parsedData = await data.json();
   
     // Update state using the callback function
-    this.setState(prevState => ({
-      articles: [...prevState.articles, ...parsedData.articles],
-      totalResults: parsedData.totalResults,
-      loading: false,
-      page: prevState.page + 1
-    }));
+    setArticles(prevArticles => [...prevArticles, ...parsedData.articles]); //adding to (concating) current data in articles
+    setTotalResults(parsedData.totalResults);
+    setLoading(false);
+    setPage(prevPage => prevPage + 1);
   };
   
-
-
-  render() {
     return (
       <>
-        <h1 className='text-center'>NewsFlash - Top {this.capitalizeFirstLetter(this.props.category)} Head Lines</h1>
-        {this.state.loading&&<Loader/>}
+        <h1 className='text-center'>NewsFlash - Top {capitalizeFirstLetter(props.category)} Head Lines</h1>
+        {loading&&<Loader/>}
 
         <InfiniteScroll
-          dataLength={this.state.articles.length} //This is important field to render the next data
-          next={this.fetchData}
-          hasMore={this.state.articles.length!=this.state.totalResults}
+          dataLength={articles.length} //This is important field to render the next data
+          next={fetchData}
+          hasMore={articles.length!=totalResults}
           loader={<Loader/>}
           endMessage={
-            this.state.articles.length == this.state.totalResults ? (
+            articles.length == totalResults ? (
               <p style={{ textAlign: 'center' }}>
                 <b>Yay! You have seen it all</b>
               </p>
@@ -112,7 +87,7 @@ async componentDidMount(){
         >
           <div className="container">
           <div className="row">
-            {this.state.articles.map((e)=>{
+            {articles.map((e)=>{
                return (
                 <div className='col md-4 mx-auto' key={e.url}>
                 <NewsItem title={e.title?e.title:""} description={e.description?e.description:""} imgUrl={e.urlToImage} newsUrl={e.url} author={e.author} date={e.publishedAt} source={e.source.name}> </NewsItem>
@@ -125,16 +100,24 @@ async componentDidMount(){
         </div>
         </InfiniteScroll>
         
-        {/* <div class="d-flex justify-content-between">
-                <button disabled={this.state.page<=1} type="button" className="btn btn-info" onClick={this.handlePreviousClick}>&larr; Previous</button>
-                <button disabled={this.state.page+1>Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" className="btn btn-info" onClick={this.handleNextClick}>Next &rarr;</button>
+        {/* <div class="d-flex justify-content-between"> //added infinite scrolling
+                <button disabled={page<=1} type="button" className="btn btn-info" onClick={this.handlePreviousClick}>&larr; Previous</button>
+                <button disabled={page+1>Math.ceil(totalResults/props.pageSize)} type="button" className="btn btn-info" onClick={this.handleNextClick}>Next &rarr;</button>
         </div> */}
       </>
 
     )
-    
-  }
 }
 
+News.defaultProps ={
+  country: "in",
+  pageSize: "9",
+  category: "general"
+}
+News.propTypes = {
+  country: PropTypes.string,
+  pageSize: PropTypes.number,
+  category: PropTypes.string
+}
 
 export default News
