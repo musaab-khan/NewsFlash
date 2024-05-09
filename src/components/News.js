@@ -10,8 +10,7 @@ const News = (props) => {
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
 
-  // document.title=`${this.capitalizeFirstLetter(props.category)} - NewsFlash`;
-
+  
   const capitalizeFirstLetter=(word)=> {
     if (word && typeof word === 'string') {
       return word.charAt(0).toUpperCase() + word.slice(1);
@@ -19,24 +18,25 @@ const News = (props) => {
       return '';
     }
   }
-
-
-const newsUpdate = async()=>{
-  props.setProgress(10);
-  let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`
-  setLoading(true)
-  let data = await fetch(url);
-  props.setProgress(50);
-  let parsedData= await data.json();
-  props.setProgress(70);
-  setArticles(parsedData.articles);
-  setTotalResults(parsedData.totalResults);
-  setLoading(false);
-  props.setProgress(100);
+  
+  
+  const newsUpdate = async()=>{
+    props.setProgress(10);
+    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`
+    setLoading(true)
+    let data = await fetch(url);
+    props.setProgress(50);
+    let parsedData= await data.json();
+    props.setProgress(70);
+    setArticles(parsedData.articles);
+    setTotalResults(parsedData.totalResults);
+    setLoading(false);
+    props.setProgress(100);
     
-}
-
-useEffect(() => { //componentDidMount replacement runs after component mounted
+  }
+  
+  useEffect(() => { //componentDidMount replacement runs after component mounted
+    document.title=`${capitalizeFirstLetter(props.category)} - NewsFlash`;
   newsUpdate();
 }, [])
 
@@ -68,7 +68,7 @@ useEffect(() => { //componentDidMount replacement runs after component mounted
   
     return (
       <>
-        <h1 className='text-center'>NewsFlash - Top {capitalizeFirstLetter(props.category)} Head Lines</h1>
+        <h1 className='text-center' style={{marginTop: "90px"}}>NewsFlash - Top {capitalizeFirstLetter(props.category)} Head Lines</h1>
         {loading&&<Loader/>}
 
         <InfiniteScroll
